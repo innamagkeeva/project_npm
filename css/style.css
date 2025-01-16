@@ -1,0 +1,240 @@
+.like path {
+  fill: red;
+  stroke: red;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+p,
+ul,
+li {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+body {
+  background-color: gray;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+}
+
+button {
+  padding: 0;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.weather {
+  max-width: 621px;
+  width: 100%;
+  min-height: 383px;
+  background-color: white;
+  margin: 0 auto;
+  padding: 12px;
+}
+
+.weather__inner {
+  max-width: 600px;
+  width: 100%;
+  min-height: 359px;
+  border: 1px solid black;
+}
+
+.loader {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+}
+
+.loader__spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-style {
+  display: flex;
+}
+
+.popup {
+  display: none;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 300px;
+  height: 100px;
+  background-color: white;
+  border: 1px solid red;
+  padding-left: 10px;
+  z-index: 1000;
+}
+
+.popup__text {
+  font-size: 20px;
+  color: red;
+}
+
+.popup__button-close {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 30px;
+  height: 30px;
+}
+
+.popup__button-close::before {
+  content: '+';
+  position: absolute;
+  font-size: 32px;
+  color: blue;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  rotate: 45deg;
+}
+
+.popup-style {
+  display: flex;
+}
+
+.form {
+  width: 100%;
+  height: 45px;
+  border-bottom: 1px solid black;
+  padding: 7px;
+  display: flex;
+}
+
+.form__input {
+  font-size: 20px;
+  width: 100%;
+  border: none;
+  outline: 0;
+}
+
+.form__button {
+  width: 30px;
+  height: 30px;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 313px;
+}
+
+.section__part {
+  width: 50%;
+}
+
+.section__part-left {
+  padding: 10px;
+  border-right: 1px solid black;
+}
+
+.part__temp {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.part__temp-degrees {
+  font-size: 82px;
+  position: relative;
+}
+
+.part__temp-degrees::after {
+  content: 'o';
+  position: absolute;
+  font-size: 40px;
+}
+
+.part__images {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.part__images-img {
+  width: 80px;
+  height: 60px;
+}
+
+.part__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cityName {
+  font-size: 25px;
+}
+
+.section__part-added {
+  border-bottom: 1px solid black;
+  padding-left: 10px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.section__part-text {
+  line-height: 28px;
+  font-size: 24px;
+}
+
+.list {
+  overflow-y: auto;
+  height: 253px;
+  padding: 10px;
+}
+
+.list_li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.list__button-city {
+  font-size: 25px;
+}
+
+.list__button-delete {
+  rotate: 45deg;
+  font-size: 30px;
+}
