@@ -1,6 +1,23 @@
 import UI from './ui.js'
 import { apiKey, serverUrl } from './const.js'
 
+// Импортируем нужную функцию
+import { format } from 'date-fns'
+
+// Создаем объект даты
+const date = new Date(2023, 9, 25, 14, 30) // 2023-10-25 14:30
+
+// Форматируем дату
+const formattedDate = format(date, 'yyyy-MM-dd HH:mm:ss')
+console.log(formattedDate) // Вывод: "2023-10-25 14:30:00"
+
+// Другие примеры форматирования
+const formattedDate2 = format(date, 'MM/dd/yyyy')
+console.log(formattedDate2) // Вывод: "10/25/2023"
+
+const formattedDate3 = format(date, 'EEEE, MMMM do, yyyy')
+console.log(formattedDate3) // Вывод: "Wednesday, October 25th, 2023"
+
 let favoriteCities = [] // создали переменную, в которую поместили пустой массив для добавления городов
 
 loadCitiesFromLocalStorage() //при перезагрузки сразу выз-ся функ, кот загружает города из хранилища
