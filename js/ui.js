@@ -18,3 +18,7 @@ const UI = {
 }
 
 export default UI
+
+//отключает eslint только в этой сточке, над кот есть этот комментарий - пишется именно как комментарий
+// eslint-disable-next-line
+let a = 6
