@@ -1,26 +1,26 @@
 import UI from './ui.js'
 import { apiKey, serverUrl } from './const.js'
 
-// Импортируем нужную функцию
-import { format } from 'date-fns'
+// // Импортируем нужную функцию
+// import { format } from 'date-fns'
 
-// Создаем объект даты
-const date = new Date(2023, 9, 25, 14, 30) // 2023-10-25 14:30
+// // Создаем объект даты
+// const date = new Date(2023, 9, 25, 14, 30) // 2023-10-25 14:30
 
-// Форматируем дату
-const formattedDate = format(date, 'yyyy-MM-dd HH:mm:ss')
-console.log(formattedDate) // Вывод: "2023-10-25 14:30:00"
+// // Форматируем дату
+// const formattedDate = format(date, 'yyyy-MM-dd HH:mm:ss')
+// console.log(formattedDate) // Вывод: "2023-10-25 14:30:00"
 
-// Другие примеры форматирования
-const formattedDate2 = format(date, 'MM/dd/yyyy')
-console.log(formattedDate2) // Вывод: "10/25/2023"
+// // Другие примеры форматирования
+// const formattedDate2 = format(date, 'MM/dd/yyyy')
+// console.log(formattedDate2) // Вывод: "10/25/2023"
 
-const formattedDate3 = format(date, 'EEEE, MMMM do, yyyy')
-console.log(formattedDate3) // Вывод: "Wednesday, October 25th, 2023"
+// const formattedDate3 = format(date, 'EEEE, MMMM do, yyyy')
+// console.log(formattedDate3) // Вывод: "Wednesday, October 25th, 2023"
 
 let favoriteCities = [] // создали переменную, в которую поместили пустой массив для добавления городов
 
-loadCitiesFromLocalStorage() //при перезагрузки сразу выз-ся функ, кот загружает города из хранилища
+loadCitiesFromLocalStorage() //при перезагрузки сразу вызывается функция, которая загружает города из хранилища
 
 UI.FORM.addEventListener('submit', getCityNameForRequest) // вешаю обр соб на форму, и при нажатии на поиск или enter выз-ся функ getCityName
 UI.FOOTER_BUTTON.addEventListener('click', addCityToFavorites) // вешаю обр соб на кнопку футера, и при нажатии на нее выз-ся функ getCityName
@@ -30,7 +30,7 @@ UI.CLOSE_BUTTON.addEventListener('click', closePopup)
 function getCityNameForRequest(e) {
   e.preventDefault() // отмена перезагрузки страницы
 
-  const cityName = UI.FORM_INPUT.value.trim() //конст, кот присваивается значение инпута без пробелов
+  const cityName = UI.FORM_INPUT.value.trim() //константа, которая присваивается значение инпута без пробелов
   getCityWeather(cityName) //вызов функ кот отправляет запрос для получения данных с сервера
 
   clearInput() //инпут очищается
@@ -255,4 +255,49 @@ function deleteCity(e) {
   saveToLocalStorage() // загружаю новые данные из localStorage
   parentNode.remove()
   console.log(favoriteCities)
+}
+
+function setCookie(name, value, options = {}) {
+  // Установка стандартных опций
+  options = {
+    path: '/',
+    'max-age': 3600, // Устанавливаем 1 час жизни в секундах
+  }
+
+  // Если переданы expires, переводим их в UTC строку
+  if (options.expires) {
+    options.expires = options.expires.toUTCString()
+  }
+
+  // Начинаем создавать куку
+  let updatedCookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`
+
+  // Добавляем опции к куке
+  for (let optionKey in options) {
+    updatedCookie += `; ${optionKey}`
+    const optionValue = options[optionKey]
+    if (optionValue !== true) {
+      updatedCookie += `=${optionValue}`
+    }
+  }
+
+  // Устанавливаем куку в документ
+  document.cookie = updatedCookie
+  console.log('Кука создана:', updatedCookie) // Логируем информацию о куке
+}
+
+// Сохранение выбранного города
+function saveSelectedCity(city) {
+  setCookie('lastSelectedCity', city, { 'max-age': 3600 })
+}
+
+// Проверяем, есть ли города в списке
+if (favoriteCities.length > 0) {
+  // Получаем последний город из массива
+  let lastCity = favoriteCities[favoriteCities.length - 1]
+
+  // Сохраняем последний город
+  saveSelectedCity(lastCity)
+} else {
+  console.log('Список городов пуст.')
 }
